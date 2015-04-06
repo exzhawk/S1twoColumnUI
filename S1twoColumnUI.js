@@ -35,28 +35,18 @@ if (location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegEx
     f.style.bottom = '0';
     document.body.appendChild(f);
 
-    window.changetarget = function () {
-        var arr = document.querySelectorAll('#threadlist .common a');
-        for (var i = 0; i < arr.length; ++i) {
-            a = arr[i];
-            if ((new RegExp("mod=viewthread")).test(a.href) || (new RegExp("thread-")).test(a.href)) {
-                a.target = 'frame';
-                a.onclick = function () {
-                };
-            }
+    document.onclick = function (event) {
+        var target = event.target;
+        //console.log(target.nodeName,target.href);
+        //return;
+        if (target.nodeName == "TH" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
+            document.getElementById('frame').src=target.querySelector('th>a').href;
+        } else if (target.nodeName == "A" && (target.href.startsWith("thread-")||target.href.search("mod=viewthread")!=-1)) {
+            document.getElementById('frame').src=target.href;
         }
-        var a = document.querySelectorAll('#threadlisttableid>tbody');
-        for (var j = 0; j < a.length; ++j) {
-            a[j].onclick = function () {
-                var f = document.querySelector('#frame');
-                f.src = this.querySelector('tr>th>a').href;
-            };
-        }
+        event.preventDefault();
     };
-    changetarget();
-    document.getElementById('autopbn').addEventListener("click", function () {
-        changetarget();
-    });
+
 } else if (self != top && location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
     GM_addStyle('#toptb,#hd{display:none}');
 }
