@@ -40,13 +40,69 @@ if (location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegEx
         //console.log(target.nodeName,target.href);
         //return;
         if (target.nodeName == "TH" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
-            document.getElementById('frame').src=target.querySelector('th>a').href;
-        } else if (target.nodeName == "A" && (target.href.startsWith("thread-")||target.href.search("mod=viewthread")!=-1)) {
-            document.getElementById('frame').src=target.href;
+            document.getElementById('frame').src = target.querySelector('th>a').href;
+        } else if (target.nodeName == "A" && (target.href.startsWith("thread-") || target.href.search("mod=viewthread") != -1)) {
+            document.getElementById('frame').src = target.href;
         }
         event.preventDefault();
     };
 
 } else if (self != top && location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
     GM_addStyle('#toptb,#hd{display:none}');
+}
+if (location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
+    var td = document.querySelectorAll('.plhin tbody tr:first-child td.pls:first-child');
+    for (i in td) {
+        td[i].rowSpan = "4";
+    }
+    GM_addStyle('\
+.favatar {\
+    height: 150px !important;\
+    overflow: hidden !important;\
+}\
+.favatar:hover {\
+    height: auto !important;\
+    overflow: visible !important;\
+}\
+.favatar .pi {\
+    position: absolute;\
+}\
+.favatar:hover .pi {\
+    position: initial;\
+}\
+.favatar .authi {\
+    background: white;\
+    padding: 5px;\
+}\
+.favatar:hover .authi {\
+    background: none;\
+    padding: 0;\
+}\
+.t_fsz {\
+    min-height: 0 !important;\
+}\
+.sign {\
+    max-height: 20px !important;\
+    padding: 0 !important;\
+    position: relative;\
+    width: 600px;\
+    top: 10px;\
+    margin-left: 70px;\
+    margin-bottom: 0 !important;\
+    background: rgb(246, 247, 235);\
+    height: 0;\
+    overflow: visible;\
+}\
+.sign:hover {\
+    max-height: 200px !important;\
+}\
+.plhin > tbody > tr:nth-child(4) > td:first-child {\
+        display: none;\
+}\
+#p_btn {\
+    padding: 0 !important;\
+    margin-top: 0 !important;\
+    margin-bottom: 0 !important;\
+}')
+
 }
