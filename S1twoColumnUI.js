@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Two Column S1
 // @namespace    http://exz.me/
-// @version      0.3
+// @version      0.4
 // @description  two colomn ui for s1
 // @author       Epix
 // @match        http://bbs.saraba1st.com/2b/*
@@ -9,7 +9,7 @@
 // ==/UserScript==
 var width = 48;
 var list_on_left = true;
-if (location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
+if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
     var wp = document.querySelector('#wp');
     wp.style.width = width + '%';
     wp.style.position = 'absolute';
