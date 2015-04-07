@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Two Column S1
 // @namespace    http://exz.me/
-// @version      0.1
+// @version      0.2
 // @description  two colomn ui for s1
 // @author       Epix
 // @match        http://bbs.saraba1st.com/2b/*
@@ -92,9 +92,11 @@ if (location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegEx
     background: rgb(246, 247, 235);\
     height: 0;\
     overflow: visible;\
+    opacity: 0.01;\
 }\
 .sign:hover {\
     max-height: 200px !important;\
+    opacity: 1;\
 }\
 .plhin > tbody > tr:nth-child(4) > td:first-child {\
         display: none;\
