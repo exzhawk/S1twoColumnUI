@@ -19,7 +19,9 @@ if (self==top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') 
         wp.style.right = '0';
     }
     wp.style.minWidth = '0px';
-
+    if(list_on_left){
+        GM_addStyle( '#um{margin-right:55%} #qmenu{margin-right:55% !important}' )
+    }
     var f = document.createElement("iframe");
     f.id = 'frame';
     f.name = 'frame';
