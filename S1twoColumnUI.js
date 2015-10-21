@@ -1,23 +1,23 @@
 // ==UserScript==
 // @name         Two Column S1
 // @namespace    http://exz.me/
-// @version      0.8
+// @version      0.9
 // @description  two colomn ui for s1
 // @author       Epix
 // @match        http://bbs.saraba1st.com/2b/*
 // @grant        GM_addStyle
 // ==/UserScript==
-var width = 48;
+var width = 47;
 var list_on_left = true;
 if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
 
 
-    $('nv_forum').style['width'] = width - 1 + '%';
+    $('nv_forum').style['width'] = width + '%';
     GM_addStyle('.wp,#toptb{min-width:0 !important');
     var f = document.createElement("iframe");
     f.id = 'frame';
     f.name = 'frame';
-    f.style.width = (99.5 - width) + '%';
+    f.style.width = (100 - width) + '%';
     f.style.height = '95%';
     f.style.position = 'fixed';
     f.style.right = '0';
