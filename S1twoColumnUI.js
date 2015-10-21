@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Two Column S1
 // @namespace    http://exz.me/
-// @version      0.7
+// @version      0.8
 // @description  two colomn ui for s1
 // @author       Epix
 // @match        http://bbs.saraba1st.com/2b/*
@@ -9,31 +9,18 @@
 // ==/UserScript==
 var width = 48;
 var list_on_left = true;
-if (self==top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
-    var wp = document.querySelector('#wp');
-    wp.style.width = width + '%';
-    wp.style.position = 'absolute';
-    if (list_on_left) {
-        wp.style.left = '0';
-    } else {
-        wp.style.right = '0';
-    }
-    wp.style.minWidth = '0px';
-    if(list_on_left){
-        GM_addStyle( '#um{margin-right:55%} #qmenu{margin-right:55% !important} #myprompt_menu{left: 445.5px !important;}' );
-    }
+if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
+
+
+    $('nv_forum').style['width'] = width - 5 + '%';
+    GM_addStyle('.wp,#toptb{min-width:0 !important');
     var f = document.createElement("iframe");
     f.id = 'frame';
     f.name = 'frame';
     f.style.width = (99 - width) + '%';
     f.style.height = '95%';
     f.style.position = 'fixed';
-    if (list_on_left) {
-        f.style.right = '0';
-    }
-    else {
-        f.style.left = '0';
-    }
+    f.style.right = '0';
     f.style.bottom = '0';
     document.body.appendChild(f);
 
@@ -43,7 +30,7 @@ if (self==top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') 
         //return;
         if (target.nodeName == "TH" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
             document.getElementById('frame').src = target.querySelector('th>a').href;
-        } else if (target.nodeName == "A" && (target.href.search("thread-")!=-1 || target.href.search("mod=viewthread") != -1)) {
+        } else if (target.nodeName == "A" && (target.href.search("thread-") != -1 || target.href.search("mod=viewthread") != -1)) {
             document.getElementById('frame').src = target.href;
             event.preventDefault();
         }
