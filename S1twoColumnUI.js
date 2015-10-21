@@ -12,12 +12,12 @@ var list_on_left = true;
 if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
 
 
-    $('nv_forum').style['width'] = width - 5 + '%';
+    $('nv_forum').style['width'] = width - 1 + '%';
     GM_addStyle('.wp,#toptb{min-width:0 !important');
     var f = document.createElement("iframe");
     f.id = 'frame';
     f.name = 'frame';
-    f.style.width = (99 - width) + '%';
+    f.style.width = (99.5 - width) + '%';
     f.style.height = '95%';
     f.style.position = 'fixed';
     f.style.right = '0';
