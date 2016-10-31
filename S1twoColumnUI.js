@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Two Column S1
 // @namespace    http://exz.me/
-// @version      0.10
+// @version      0.11
 // @description  two colomn ui for s1
 // @author       Epix
 // @match        http://bbs.saraba1st.com/2b/*
@@ -30,6 +30,8 @@ if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-'
         //return;
         if (target.nodeName == "TH" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
             document.getElementById('frame').src = target.querySelector('th>a').href;
+        } else if (target.nodeName == "TD" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
+            document.getElementById('frame').src = target.querySelector('td>a').href;
         } else if (target.nodeName == "A" && (target.href.search("thread-") != -1 || target.href.search("mod=viewthread") != -1)) {
             document.getElementById('frame').src = target.href;
             event.preventDefault();
