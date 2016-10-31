@@ -42,7 +42,7 @@ if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-'
 }
 if (location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
     var td = document.querySelectorAll('.plhin tbody tr:first-child td.pls:first-child');
-    for (i in td) {
+    for (var i in td) {
         td[i].rowSpan = "4";
     }
     GM_addStyle('\
@@ -88,13 +88,19 @@ if (location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegEx
     max-height: 200px !important;\
     opacity: 1;\
 }\
-.plhin > tbody > tr:nth-child(4) > td:first-child {\
+.plhin > tbody > tr:nth-child(3) > td:first-child {\
+        display: none;\
+}\
+.plhin > tbody > tr:nth-child(3) > td{\
+    border-bottom: 1px solid #022C80; \
+}\
+.plhin > tbody > tr:nth-child(4){\
         display: none;\
 }\
 #p_btn {\
     padding: 0 !important;\
     margin-top: 0 !important;\
     margin-bottom: 0 !important;\
-}')
+}');
 
 }
