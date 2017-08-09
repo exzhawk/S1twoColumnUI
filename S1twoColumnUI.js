@@ -29,7 +29,7 @@ if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-'
         //console.log(target.nodeName,target.href);
         //return;
         if (target.nodeName == "TH" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
-            document.getElementById('frame').src = target.querySelector('th>a').href;
+            document.getElementById('frame').src = target.querySelector('th>a.xst').href;
         } else if (target.nodeName == "TD" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
             document.getElementById('frame').src = target.querySelector('td>a').href;
         } else if (target.nodeName == "A" && (target.href.search("thread-") != -1 || target.href.search("mod=viewthread") != -1)) {
