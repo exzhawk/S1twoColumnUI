@@ -1,15 +1,15 @@
 // ==UserScript==
 // @name         Two Column S1
-// @namespace    http://exz.me/
-// @version      0.12
+// @namespace    https://exz.me/
+// @version      0.13
 // @description  two colomn ui for s1
 // @author       Epix
-// @match        http://bbs.saraba1st.com/2b/*
+// @match        https://bbs.saraba1st.com/2b/*
 // @grant        GM_addStyle
 // ==/UserScript==
 var width = 47;
 var list_on_left = true;
-if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
+if (self == top && location.href.startsWith('https://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
 
 
     $('nv_forum').style['width'] = width + '%';
@@ -39,10 +39,10 @@ if (self == top && location.href.startsWith('http://bbs.saraba1st.com/2b/forum-'
 
     };
 
-} else if (self != top && location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
+} else if (self != top && location.href.startsWith('https://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
     GM_addStyle('#toptb,#hd{display:none}');
 }
-if (location.href.startsWith('http://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
+if (location.href.startsWith('https://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
     var td = document.querySelectorAll('.plhin tbody tr:first-child td.pls:first-child');
     for (var i in td) {
         td[i].rowSpan = "4";
