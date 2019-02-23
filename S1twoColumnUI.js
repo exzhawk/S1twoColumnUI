@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Two Column S1
 // @namespace    https://exz.me/
-// @version      0.13
+// @version      0.14
 // @description  two colomn ui for s1
 // @author       Epix
 // @match        https://bbs.saraba1st.com/2b/*
@@ -9,7 +9,7 @@
 // ==/UserScript==
 var width = 47;
 var list_on_left = true;
-if (self == top && location.href.startsWith('https://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
+if (self === top && location.href.startsWith('https://bbs.saraba1st.com/2b/forum-') || (new RegExp("mod=forumdisplay")).test(location.href)) {
 
 
     $('nv_forum').style['width'] = width + '%';
@@ -28,18 +28,21 @@ if (self == top && location.href.startsWith('https://bbs.saraba1st.com/2b/forum-
         var target = event.target;
         //console.log(target.nodeName,target.href);
         //return;
-        if (target.nodeName == "TH" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
-            document.getElementById('frame').src = target.querySelector('th>a.xst').href;
-        } else if (target.nodeName == "TD" && target.parentNode.parentNode.parentNode.id == "threadlisttableid") {
-            document.getElementById('frame').src = target.querySelector('td>a').href;
-        } else if (target.nodeName == "A" && (target.href.search("thread-") != -1 || target.href.search("mod=viewthread") != -1)) {
-            document.getElementById('frame').src = target.href;
+        var url = null;
+        if (target.nodeName === "TH" && target.parentNode.parentNode.parentNode.id === "threadlisttableid") {
+            url = target.querySelector('th>a.xst').href;
+        } else if (target.nodeName === "TD" && target.parentNode.parentNode.parentNode.id === "threadlisttableid") {
+            url = target.querySelector('td>a').href;
+        } else if (target.nodeName === "A" && (target.href.search("thread-") !== -1 || target.href.search("mod=viewthread") !== -1)) {
+            url = target.href;
             event.preventDefault();
+        } else {
+            return;
         }
-
+        document.getElementById('frame').src = url;
+        history.pushState(null, null, url);
     };
-
-} else if (self != top && location.href.startsWith('https://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
+} else if (self !== top && location.href.startsWith('https://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
     GM_addStyle('#toptb,#hd{display:none}');
 }
 if (location.href.startsWith('https://bbs.saraba1st.com/2b/thread') || (new RegExp("mod=viewthread")).test(location.href)) {
